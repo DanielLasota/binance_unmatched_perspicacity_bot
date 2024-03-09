@@ -1,12 +1,19 @@
-from .orderbook_price_level import OrderbookPriceLevel
+from .stream_orderbook_price_level import OrderbookPriceLevel
+
+
+def _generate_representation(order_list):
+    representation = []
+    for order in order_list:
+        representation.append(f"{float(order.price_level):.2f}      {float(order.cumulated_quantity):.5f}")
+    return "\n".join(representation)
 
 
 class StreamOrderbook:
-    def __init__(self, msg):
-        self.msg = msg
-        self.asks = [OrderbookPriceLevel(price, quantity, 'S') for price, quantity in self.msg['asks']]
-        self.bids = [OrderbookPriceLevel(price, quantity, 'B') for price, quantity in self.msg['bids']]
-        
+    def __init__(self, message: dict) -> None:
+        self.message = message
+        self.asks = [OrderbookPriceLevel(price, quantity, 'S') for price, quantity in message['asks']]
+        self.bids = [OrderbookPriceLevel(price, quantity, 'B') for price, quantity in message['bids']]
+
     @property
     def best_bid(self):
         return self.bids[0] if self.bids else None
@@ -14,15 +21,20 @@ class StreamOrderbook:
     @property
     def best_ask(self):
         return self.asks[0] if self.asks else None
-        
+
+    @property
+    def best_asks_repr(self):
+        return _generate_representation(self.asks[::-1])
+
+    @property
+    def best_bids_repr(self):
+        return _generate_representation(self.bids)
+
     def __repr__(self):
-        orderbook_representation = []
-        orderbook_representation.append('\033[31m')
-        for ask in self.asks[::-1]:
-            orderbook_representation.append(f"{ask.side} {ask.price_level} {ask.cumulated_quantity}")
-            
-        orderbook_representation.append('\033[92m')
-        for bid in self.bids:
-            orderbook_representation.append(f"{bid.side} {bid.price_level} {bid.cumulated_quantity}")
-        
-        return "\n".join(orderbook_representation)
+        asks_repr = _generate_representation(self.asks[::-1])  # Red for asks
+        bids_repr = _generate_representation(self.bids)  # Green for bids
+        return f"{asks_repr}\n{bids_repr}"
+
+    # '\033[0m'
+    # '\033[31m'
+    # '\033[92m'

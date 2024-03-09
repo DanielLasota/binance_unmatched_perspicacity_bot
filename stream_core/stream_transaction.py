@@ -9,8 +9,8 @@ class StreamTransaction:
         self.event_time = message['E']
         self.symbol = message['s']
         self.trade_id = message['t']
-        self.price = message['p']
-        self.quantity = message['q']
+        self.price = float(message['p'])
+        self.quantity = float(message['q'])
         self.buyer_order_id = message['b']
         self.seller_order_id = message['a']
         self.transaction_time = message['T']

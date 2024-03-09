@@ -1,11 +1,9 @@
-
-
 class OrderbookPriceLevel:
     def __init__(self,
-                 price_level,
-                 cumulated_quantity,
-                 side
-                 ):
+                 price_level: str,
+                 cumulated_quantity: str,
+                 side: str
+                 ) -> None:
         self.price_level = price_level
         self.cumulated_quantity = cumulated_quantity
         self.side = side

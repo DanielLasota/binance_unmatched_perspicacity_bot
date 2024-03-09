@@ -18,16 +18,18 @@ class OrderbookDaemon:
     def unsubscribe(self, observer):
         self.observers.remove(observer)
 
-    def notify_observers(self, msg):
+    def notify_observers(self, information):
         for observer in self.observers:
-            observer.update(msg)
+            observer.update('orderbookBestBidsQueue', information.best_bids_repr)
+            observer.update('orderbookBestAsksQueue', information.best_asks_repr)
 
     def orderbook_listener(self, instrument):
-        
-        def handle_orderbook(msg):
+
+        def handle_orderbook(message):
             with self.lock:
-                self.orderbook_message = msg
-                self.formatted_target_orderbook = StreamOrderbook(msg)
+                self.orderbook_message = message
+                self.formatted_target_orderbook = StreamOrderbook(message)
+                print(self.formatted_target_orderbook)
                 self.notify_observers(self.formatted_target_orderbook)
 
         api_key, api_secret = os.environ.get('DEV_MODE_API_KEY'), os.environ.get('DEV_MODE_API_SECRET')

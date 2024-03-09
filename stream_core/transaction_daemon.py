@@ -1,6 +1,5 @@
 import threading
 from binance import ThreadedWebsocketManager
-
 import os
 
 from .stream_transaction import StreamTransaction
@@ -20,7 +19,12 @@ class TransactionDaemon:
 
     def notify_observers(self, information):
         for observer in self.observers:
-            observer.update('transaction', information)
+            observer.update(
+                'transaction',
+                f'{information.price}  '
+                f'{information.quantity:.5f}  '
+                f'{information.market_order_side}'
+            )
 
     def transaction_listener(self, instrument):
         
