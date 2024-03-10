@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 from flask_cors import CORS
 import time
 import json
@@ -9,6 +9,7 @@ from queue import Queue
 
 class FlaskManager:
     def __init__(self):
+        self.observers = []
         self.app = Flask(__name__)
         CORS(self.app)
         self.setup_routes()
@@ -17,10 +18,33 @@ class FlaskManager:
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
 
+    def subscribe(self, observer):
+        self.observers.append(observer)
+
+    def unsubscribe(self, observer):
+        self.observers.remove(observer)
+
+    def notify_observers(self, data):
+        for observer in self.observers:
+            observer.update(data)
+
+    def update(self, variable, message):
+        data = {variable: message}
+        self.data_queue.put(data)
+        self.data_updated.set()
+
     def setup_routes(self):
         @self.app.route('/time_stream')
-        def time_stream():
+        def main_stream():
             return Response(self.stream(), mimetype='text/event-stream')
+
+        @self.app.route('/post', methods=['POST'])
+        def receive_data():
+            data = request.get_json()
+            print('received sth')
+            print(data)
+            self.notify_observers(data)
+            return "Data received"
 
     def stream(self):
         while True:
@@ -29,11 +53,6 @@ class FlaskManager:
                 data = self.data_queue.get()
                 yield f"data: {json.dumps(data)}\n\n"
             self.data_updated.clear()
-
-    def update(self, variable, message):
-        data = {variable: message}
-        self.data_queue.put(data)
-        self.data_updated.set()
 
     def app_init(self):
         self.app.run(threaded=True, debug=False)
