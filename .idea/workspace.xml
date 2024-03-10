@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="flask_stream_manager.py receive post update (and it works)" />
+    <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="stream_orderbook.py asks list fix ([:n])">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +109,7 @@
       <workItem from="1709429073537" duration="221000" />
       <workItem from="1709429325260" duration="788000" />
       <workItem from="1709475057757" duration="90000" />
-      <workItem from="1709977652574" duration="24239000" />
+      <workItem from="1709977652574" duration="24698000" />
     </task>
     <task id="LOCAL-00001" summary="flask_stream_manager queue add&#10;orderbook stream refactor&#10;transaction stream refactor&#10;stream orderbook refactor">
       <option name="closed" value="true" />
@@ -133,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710031323368</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="stream_orderbook.py asks list fix ([:n])">
+      <option name="closed" value="true" />
+      <created>1710031369130</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710031369130</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,9 +153,10 @@
     <MESSAGE value="flask_stream_manager queue add&#10;orderbook stream refactor&#10;transaction stream refactor&#10;stream orderbook refactor" />
     <MESSAGE value="matrix mode transactions orderbook &#10;matrix mode transactions final set" />
     <MESSAGE value="flask_stream_manager.py receive post update (and it works)" />
-    <option name="LAST_COMMIT_MESSAGE" value="flask_stream_manager.py receive post update (and it works)" />
+    <MESSAGE value="stream_orderbook.py asks list fix ([:n])" />
+    <option name="LAST_COMMIT_MESSAGE" value="stream_orderbook.py asks list fix ([:n])" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/binance_unmatched_perspicacity_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1710030627219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/binance_unmatched_perspicacity_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1710031394187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

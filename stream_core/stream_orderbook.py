@@ -4,7 +4,7 @@ from .stream_orderbook_price_level import OrderbookPriceLevel
 def _generate_short_representation(order_list):
     representation = []
     for order in order_list:
-        representation.append(f"{float(order.price_level):.2f}      {float(order.cumulated_quantity):.5f}")
+        representation.append(f"{float(order.price_level):.2f}     {float(order.cumulated_quantity):.5f}")
     return "\n".join(representation)
 
 
