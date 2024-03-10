@@ -20,8 +20,8 @@ class OrderbookDaemon:
 
     def notify_observers(self, information):
         for observer in self.observers:
-            observer.update('orderbookBestBidsQueue', information.best_bids_repr)
-            observer.update('orderbookBestAsksQueue', information.best_asks_repr)
+            observer.update('orderbookBestBidsQueue', information.best_n_bids_repr(17))
+            observer.update('orderbookBestAsksQueue', information.best_n_asks_repr(17))
 
     def orderbook_listener(self, instrument):
 
@@ -29,7 +29,7 @@ class OrderbookDaemon:
             with self.lock:
                 self.orderbook_message = message
                 self.formatted_target_orderbook = StreamOrderbook(message)
-                print(self.formatted_target_orderbook)
+                # print(self.formatted_target_orderbook)
                 self.notify_observers(self.formatted_target_orderbook)
 
         api_key, api_secret = os.environ.get('DEV_MODE_API_KEY'), os.environ.get('DEV_MODE_API_SECRET')
