@@ -38,7 +38,7 @@ class StreamOrderbook:
         return _generate_short_representation(self.bids)
 
     def best_n_asks_repr(self, n: int):
-        return _generate_short_representation(self.asks[-n:][::-1])
+        return _generate_short_representation(self.asks[:n][::-1])
 
     def best_n_bids_repr(self, n: int):
         return _generate_short_representation(self.bids[:n])
