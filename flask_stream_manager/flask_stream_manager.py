@@ -28,8 +28,8 @@ class FlaskManager:
         for observer in self.observers:
             observer.update(data)
 
-    def update(self, variable, message):
-        data = {variable: message}
+    def update(self, message_type, message):
+        data = {message_type: message}
         self.data_queue.put(data)
         self.data_updated.set()
 
