@@ -11,10 +11,10 @@ class TransactionDaemon:
         self.observers = []
         self.transaction = None
 
-    def subscribe(self, observer):
+    def register(self, observer):
         self.observers.append(observer)
 
-    def unsubscribe(self, observer):
+    def unregister(self, observer):
         self.observers.remove(observer)
 
     def notify_observers(self, information):

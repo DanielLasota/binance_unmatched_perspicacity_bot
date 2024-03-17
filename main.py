@@ -5,6 +5,8 @@ import time
 import os
 from dotenv import load_dotenv
 
+from calculator.calculator import Calculator
+from cli_daemon.cli_daemon import CLIDaemon
 from flask_stream_manager.stream_to_logger import FlaskConsoleLogger
 from market_stream_core.orderbook_daemon import OrderbookDaemon
 from utils.ascii_arts import ascii_arts
@@ -38,17 +40,25 @@ for info in account_info:
 
 orderbook_daemon = OrderbookDaemon()
 orderbook_daemon.run('BTCUSDT')
-orderbook_daemon.subscribe(flask_manager)
+orderbook_daemon.register(flask_manager)
 
 transaction_daemon = TransactionDaemon()
 transaction_daemon.run('BTCUSDT')
-transaction_daemon.subscribe(flask_manager)
+transaction_daemon.register(flask_manager)
 
 flask_manager.update('dashboardEstimatedTotalBalance', 1888)
 flask_manager.update('dashboardBTCUSDPriceMain', 2137)
 
 logger = FlaskConsoleLogger()
-logger.subscribe(flask_manager)
+logger.register(flask_manager)
+
+cli_daemon = CLIDaemon()
+flask_manager.register(cli_daemon)
+
+calculator = Calculator()
+
+cli_daemon.register(calculator)
+# main_cli =
 
 sys.stdout = logger
 

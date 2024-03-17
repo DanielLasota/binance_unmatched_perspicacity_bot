@@ -12,10 +12,10 @@ class OrderbookDaemon:
         self.orderbook_message = None
         self.formatted_target_orderbook = None
 
-    def subscribe(self, observer):
+    def register(self, observer):
         self.observers.append(observer)
         
-    def unsubscribe(self, observer):
+    def unregister(self, observer):
         self.observers.remove(observer)
 
     def notify_observers(self, information):

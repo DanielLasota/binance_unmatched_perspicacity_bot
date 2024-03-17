@@ -18,10 +18,10 @@ class FlaskManager:
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
 
-    def subscribe(self, observer):
+    def register(self, observer):
         self.observers.append(observer)
 
-    def unsubscribe(self, observer):
+    def unregister(self, observer):
         self.observers.remove(observer)
 
     def notify_observers(self, data):
@@ -29,8 +29,7 @@ class FlaskManager:
             observer.update(data)
 
     def update(self, message_type, message):
-        data = {message_type: message}
-        self.data_queue.put(data)
+        self.data_queue.put({message_type: message})
         self.data_updated.set()
 
     def setup_routes(self):
@@ -41,8 +40,7 @@ class FlaskManager:
         @self.app.route('/post', methods=['POST'])
         def receive_data():
             data = request.get_json()
-            print('received sth')
-            print(data)
+            print(f'flask_manager has raceived data: {data}')
             self.notify_observers(data)
             return "Data received"
 
