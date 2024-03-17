@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="stream_orderbook.py asks list fix ([:n])">
-      <change afterPath="$PROJECT_DIR$/market_stream_core/__init__.py" afterDir="false" />
+    <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="console stdout to gui ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_stream_manager/flask_stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_stream_manager/flask_stream_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_stream_manager/stream_to_logger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/orderbook_daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/orderbook_daemon.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/stream_orderbook.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/stream_orderbook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/stream_orderbook_price_level.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/stream_orderbook_price_level.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/stream_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/stream_transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stream_core/transaction_daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/transaction_daemon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market_stream_core/transaction.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,21 +43,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "daniel-dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;daniel-dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="binance_unmatched_perspicacity_bot" is-module-sdk="true">
@@ -123,7 +114,8 @@
       <workItem from="1709429325260" duration="788000" />
       <workItem from="1709475057757" duration="90000" />
       <workItem from="1709977652574" duration="24698000" />
-      <workItem from="1710535095239" duration="5668000" />
+      <workItem from="1710535095239" duration="6964000" />
+      <workItem from="1710588614445" duration="4383000" />
     </task>
     <task id="LOCAL-00001" summary="flask_stream_manager queue add&#10;orderbook stream refactor&#10;transaction stream refactor&#10;stream orderbook refactor">
       <option name="closed" value="true" />
@@ -157,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710031369130</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="console stdout to gui ready">
+      <option name="closed" value="true" />
+      <created>1710586377319</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710586377319</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,9 +168,10 @@
     <MESSAGE value="matrix mode transactions orderbook &#10;matrix mode transactions final set" />
     <MESSAGE value="flask_stream_manager.py receive post update (and it works)" />
     <MESSAGE value="stream_orderbook.py asks list fix ([:n])" />
-    <option name="LAST_COMMIT_MESSAGE" value="stream_orderbook.py asks list fix ([:n])" />
+    <MESSAGE value="console stdout to gui ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="console stdout to gui ready" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/binance_unmatched_perspicacity_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1710585756606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/binance_unmatched_perspicacity_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1710631314293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
