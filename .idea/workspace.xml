@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="delete old transactions.py">
-      <change afterPath="$PROJECT_DIR$/abstract_base_classes/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/abstract_base_classes/observer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/calculator/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/calculator/calculator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cli_daemon/__init.py__" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cli_daemon/cli_daemon.py" afterDir="false" />
+    <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="CLIDaemon add&#10;some observer methods add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_stream_manager/flask_stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_stream_manager/flask_stream_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_stream_manager/stream_to_logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_stream_manager/stream_to_logger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market_stream_core/orderbook_daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/orderbook_daemon.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market_stream_core/transaction_daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/transaction_daemon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/winamp/winamp.py" beforeDir="false" afterPath="$PROJECT_DIR$/winamp/winamp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +121,7 @@
       <workItem from="1709977652574" duration="24698000" />
       <workItem from="1710535095239" duration="6964000" />
       <workItem from="1710588614445" duration="4431000" />
-      <workItem from="1710692889745" duration="9493000" />
+      <workItem from="1710692889745" duration="10705000" />
     </task>
     <task id="LOCAL-00001" summary="flask_stream_manager queue add&#10;orderbook stream refactor&#10;transaction stream refactor&#10;stream orderbook refactor">
       <option name="closed" value="true" />
@@ -176,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710635020001</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="CLIDaemon add&#10;some observer methods add">
+      <option name="closed" value="true" />
+      <created>1710706539929</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710706539929</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,9 +192,10 @@
     <MESSAGE value="stream_orderbook.py asks list fix ([:n])" />
     <MESSAGE value="console stdout to gui ready" />
     <MESSAGE value="delete old transactions.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete old transactions.py" />
+    <MESSAGE value="CLIDaemon add&#10;some observer methods add" />
+    <option name="LAST_COMMIT_MESSAGE" value="CLIDaemon add&#10;some observer methods add" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/binance_unmatched_perspicacity_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1710706107214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/binance_unmatched_perspicacity_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1710707312997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

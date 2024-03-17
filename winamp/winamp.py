@@ -2,6 +2,7 @@ import threading
 import pyaudio
 import wave
 
+
 class Winamp(threading.Thread):
     
     keygen_song_1 = 'Disease - Beautiful insanity.wav'

@@ -2,26 +2,16 @@ import threading
 from binance import ThreadedWebsocketManager
 import os
 
+from abstract_base_classes.observer import Observer
 from .stream_orderbook import StreamOrderbook
 
 
-class OrderbookDaemon:
+class OrderbookDaemon(Observer):
     def __init__(self):
-        self.observers = []
+        super().__init__()
         self.lock = threading.Lock()
         self.orderbook_message = None
         self.formatted_target_orderbook = None
-
-    def register(self, observer):
-        self.observers.append(observer)
-        
-    def unregister(self, observer):
-        self.observers.remove(observer)
-
-    def notify_observers(self, information):
-        for observer in self.observers:
-            observer.update('orderbookBestBidsQueue', information.best_n_bids_repr(17))
-            observer.update('orderbookBestAsksQueue', information.best_n_asks_repr(17))
 
     def orderbook_listener(self, instrument):
 
@@ -30,7 +20,8 @@ class OrderbookDaemon:
                 self.orderbook_message = message
                 self.formatted_target_orderbook = StreamOrderbook(message)
                 # print(self.formatted_target_orderbook)
-                self.notify_observers(self.formatted_target_orderbook)
+                self.notify_observers({'orderbookBestBidsQueue': self.formatted_target_orderbook.best_n_bids_repr(17)})
+                self.notify_observers({'orderbookBestAsksQueue': self.formatted_target_orderbook.best_n_asks_repr(17)})
 
         api_key, api_secret = os.environ.get('DEV_MODE_API_KEY'), os.environ.get('DEV_MODE_API_SECRET')
             

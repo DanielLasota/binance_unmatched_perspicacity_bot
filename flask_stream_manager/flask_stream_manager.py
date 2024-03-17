@@ -6,9 +6,12 @@ import logging
 from threading import Thread, Event
 from queue import Queue
 
+from abstract_base_classes.observer import Observer
 
-class FlaskManager:
+
+class FlaskManager(Observer):
     def __init__(self):
+        super().__init__()
         self.observers = []
         self.app = Flask(__name__)
         CORS(self.app)
@@ -18,18 +21,8 @@ class FlaskManager:
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
 
-    def register(self, observer):
-        self.observers.append(observer)
-
-    def unregister(self, observer):
-        self.observers.remove(observer)
-
-    def notify_observers(self, data):
-        for observer in self.observers:
-            observer.update(data)
-
-    def update(self, message_type, message):
-        self.data_queue.put({message_type: message})
+    def update(self, message):
+        self.data_queue.put(message)
         self.data_updated.set()
 
     def setup_routes(self):
