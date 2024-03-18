@@ -1,38 +1,69 @@
+import sys
+from io import StringIO
 from abstract_base_classes.observer import Observer
 import argparse
+
+
+def create_parser():
+    parser = argparse.ArgumentParser(
+        prog='calculator',
+        description='Calculator command interpreter.'
+    )
+
+    operators = parser.add_mutually_exclusive_group(required=True)
+    operators.add_argument('--add', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                           help='Adds two numbers')
+    operators.add_argument('--sub', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                           help='Subtracts the second number from the first')
+    operators.add_argument('--mul', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                           help='Multiplies two numbers')
+    operators.add_argument('--div', '-d', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                           help='Divides the first number by the second')
+    return parser
 
 
 class Calculator(Observer):
     def __init__(self):
         super().__init__()
+        self.main_invocation_command = 'calculator'
 
     def update(self, data):
-        print(f'received: {list(data.items())[0]}')
 
-        if list(data.items())[0][0] == 'cli_request' and list(data.items())[0][1].split()[0] == 'calculator':
+        if (list(data.items())[0][0] == 'cli_request'
+                and list(data.items())[0][1].split()[0] == self.main_invocation_command):
             self.execute_command(list(data.items())[0][1])
 
     def execute_command(self, command):
         args = command.split()[1:]
-        parser = argparse.ArgumentParser(description='Calculator command interpreter.')
-        parser.add_argument('operator', type=str, choices=['add', 'sub', 'mul', 'div'], help='Operation to perform')
-        parser.add_argument('operands', type=float, nargs=2, help='Two operands for the operation')
+        parser = create_parser()
 
         try:
-            parsed_args = parser.parse_args(args)
+            parsed_args = vars(parser.parse_args(args))
             result = 0
-            if parsed_args.operator == 'add':
-                result = parsed_args.operands[0] + parsed_args.operands[1]
-            elif parsed_args.operator == 'sub':
-                result = parsed_args.operands[0] - parsed_args.operands[1]
-            elif parsed_args.operator == 'mul':
-                result = parsed_args.operands[0] * parsed_args.operands[1]
-            elif parsed_args.operator == 'div':
-                if parsed_args.operands[1] != 0:
-                    result = parsed_args.operands[0] / parsed_args.operands[1]
+            if parsed_args['add']:
+                result = parsed_args['add'][0] + parsed_args['add'][1]
+            elif parsed_args['sub']:
+                result = parsed_args['sub'][0] - parsed_args['sub'][1]
+            elif parsed_args['mul']:
+                result = parsed_args['mul'][0] * parsed_args['mul'][1]
+            elif parsed_args['div']:
+                operands = parsed_args['div']
+                if operands[1] != 0:
+                    result = operands[0] / operands[1]
                 else:
                     raise ValueError("Division by zero is not allowed.")
+
             print(f'CALCULATOR RESULT: {result}')
             self.notify_observers(f'Result: {result}')
         except Exception as e:
+            print(f'Error: {e}')
             self.notify_observers(f'Error: {e}')
+
+    def get_help_string(self):
+        parser = create_parser()
+        old_stdout = sys.stdout
+        sys.stdout = StringIO()
+        parser.print_help()
+        help_string = sys.stdout.getvalue()
+        sys.stdout = old_stdout
+        return help_string

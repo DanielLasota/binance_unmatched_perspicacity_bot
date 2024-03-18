@@ -18,7 +18,7 @@ class TransactionDaemon(Observer):
             with self.lock:
                 # print(message)
                 self.transaction = StreamTransaction(message)
-                print(self.transaction)
+                # print(self.transaction)
                 information_to_send = (
                     f'{self.transaction.price} '
                     f'{self.transaction.quantity:.5f} '

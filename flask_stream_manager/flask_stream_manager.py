@@ -33,7 +33,7 @@ class FlaskManager(Observer):
         @self.app.route('/post', methods=['POST'])
         def receive_data():
             data = request.get_json()
-            print(f'flask_manager has raceived data: {data}')
+            print(f'>> {list(data.items())[0][1]}')
             self.notify_observers(data)
             return "Data received"
 
