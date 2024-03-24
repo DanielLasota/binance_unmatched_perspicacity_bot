@@ -20,8 +20,12 @@ class CLIDaemon(Observer):
             description='BINANCE Unmatched Perspicacity BOT CLI Daemon'
         )
 
-        parser.add_argument('--print_hello', action='store_true',
-                            help='Prints "hello" as a response to the command.')
+        parser.add_argument(
+            '--print_hello',
+            action='store_true',
+            help='Prints "hello" as a response to the command.'
+        )
+
         return parser
 
     def execute_command(self, command):
@@ -32,6 +36,7 @@ class CLIDaemon(Observer):
             parsed_args = parser.parse_args(args)
             if parsed_args.print_hello:
                 print('hello')
+
         except Exception as e:
             print(f'Error: {e}')
 
@@ -52,16 +57,15 @@ class CLIDaemon(Observer):
                 print(':::::::::::::::::::::::::::::::::::::::::::::::::::')
                 print(':::BINANCE Unmatched Perspicacity BOT CLI Daemon:::')
                 print(':::::::::::::::::::::::::::::::::::::::::::::::::::')
-                print('\n')
+                print(' ')
 
                 for observer in self._observers:
                     print(observer.get_help_string())
+                    print(' ')
+                    print(' ')
+                    print(' ')
 
-                    print('\n\n\n\n\n')
-
-                self.execute_command(list(data.items())[0][1])
-
-                print(' ')
+                self.execute_command(list(data.items())[0][1])  # w tym miejscu kodu
 
                 return
 
