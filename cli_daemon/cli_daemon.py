@@ -58,10 +58,10 @@ class CLIDaemon(Observer):
                 print(':::BINANCE Unmatched Perspicacity BOT CLI Daemon:::')
                 print(':::::::::::::::::::::::::::::::::::::::::::::::::::')
                 print(' ')
+                print(' ')
 
                 for observer in self._observers:
                     print(observer.get_help_string())
-                    print(' ')
                     print(' ')
                     print(' ')
 

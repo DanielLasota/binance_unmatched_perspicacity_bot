@@ -4,28 +4,30 @@ from abstract_base_classes.observer import Observer
 import argparse
 
 
-def create_parser():
-    parser = argparse.ArgumentParser(
-        prog='calculator',
-        description='Calculator command interpreter.'
-    )
 
-    operators = parser.add_mutually_exclusive_group(required=True)
-    operators.add_argument('--add', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
-                           help='Adds two numbers')
-    operators.add_argument('--sub', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
-                           help='Subtracts the second number from the first')
-    operators.add_argument('--mul', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
-                           help='Multiplies two numbers')
-    operators.add_argument('--div', '-d', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
-                           help='Divides the first number by the second')
-    return parser
 
 
 class Calculator(Observer):
     def __init__(self):
         super().__init__()
         self.main_invocation_command = 'calculator'
+
+    def create_parser(self):
+        parser = argparse.ArgumentParser(
+            prog='calculator',
+            description='Calculator command interpreter.'
+        )
+
+        operators = parser.add_mutually_exclusive_group(required=True)
+        operators.add_argument('--add', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                               help='Adds two numbers')
+        operators.add_argument('--sub', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                               help='Subtracts the second number from the first')
+        operators.add_argument('--mul', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                               help='Multiplies two numbers')
+        operators.add_argument('--div', '-d', nargs=2, type=float, metavar=('OPERAND1', 'OPERAND2'),
+                               help='Divides the first number by the second')
+        return parser
 
     def update(self, data):
 
@@ -35,7 +37,7 @@ class Calculator(Observer):
 
     def execute_command(self, command):
         args = command.split()[1:]
-        parser = create_parser()
+        parser = self.create_parser()
 
         try:
             parsed_args = vars(parser.parse_args(args))
@@ -60,7 +62,7 @@ class Calculator(Observer):
             self.notify_observers(f'Error: {e}')
 
     def get_help_string(self):
-        parser = create_parser()
+        parser = self.create_parser()
         old_stdout = sys.stdout
         sys.stdout = StringIO()
         parser.print_help()
