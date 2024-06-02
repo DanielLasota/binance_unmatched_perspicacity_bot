@@ -1,13 +1,18 @@
+import sys
+
 from binance.client import Client
 import time
 import os
 from dotenv import load_dotenv
 
-from stream_core.orderbook_daemon import OrderbookDaemon
+from calculator.calculator import Calculator
+from cli_daemon.cli_daemon import CLIDaemon
+from flask_stream_manager.stream_to_logger import FlaskConsoleLogger
+from market_stream_core.orderbook_daemon import OrderbookDaemon
 from utils.ascii_arts import ascii_arts
 from winamp.winamp import Winamp
 from credentials_daemon.login import Login
-from stream_core.transaction_daemon import TransactionDaemon
+from market_stream_core.transaction_daemon import TransactionDaemon
 from flask_stream_manager.flask_stream_manager import FlaskManager
 
 # api_key, api_secret = Login.get_secret()
@@ -18,8 +23,8 @@ api_key, api_secret = os.environ.get('DEV_MODE_API_KEY'), os.environ.get('DEV_MO
 
 client = Client(api_key, api_secret)
 
-flask_daemon = FlaskManager()
-flask_daemon.run()
+flask_manager = FlaskManager()
+flask_manager.run()
 
 try:
     account_info = client.get_account()['balances']
@@ -35,14 +40,27 @@ for info in account_info:
 
 orderbook_daemon = OrderbookDaemon()
 orderbook_daemon.run('BTCUSDT')
-orderbook_daemon.subscribe(flask_daemon)
+orderbook_daemon.register(flask_manager)
 
 transaction_daemon = TransactionDaemon()
 transaction_daemon.run('BTCUSDT')
-transaction_daemon.subscribe(flask_daemon)
+transaction_daemon.register(flask_manager)
 
-flask_daemon.update('dashboardEstimatedTotalBalance', 1888)
-flask_daemon.update('dashboardBTCUSDPriceMain', 2137)
+flask_manager.update({'dashboardEstimatedTotalBalance': 2115})
+flask_manager.update({'dashboardBTCUSDPriceMain': 2137})
+
+logger = FlaskConsoleLogger()
+logger.register(flask_manager)
+
+cli_daemon = CLIDaemon()
+flask_manager.register(cli_daemon)
+
+calculator = Calculator()
+
+cli_daemon.register(calculator)
+# main_cli =
+
+sys.stdout = logger
 
 try:
     while True:

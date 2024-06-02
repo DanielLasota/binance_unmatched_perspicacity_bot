@@ -2,29 +2,15 @@ import threading
 from binance import ThreadedWebsocketManager
 import os
 
+from abstract_base_classes.observer import Observer
 from .stream_transaction import StreamTransaction
 
 
-class TransactionDaemon:
+class TransactionDaemon(Observer):
     def __init__(self):
+        super().__init__()
         self.lock = threading.Lock()
-        self.observers = []
         self.transaction = None
-
-    def subscribe(self, observer):
-        self.observers.append(observer)
-
-    def unsubscribe(self, observer):
-        self.observers.remove(observer)
-
-    def notify_observers(self, information):
-        for observer in self.observers:
-            observer.update(
-                'transaction',
-                f'{information.price}  '
-                f'{information.quantity:.5f}  '
-                f'{information.market_order_side}'
-            )
 
     def transaction_listener(self, instrument):
 
@@ -32,8 +18,16 @@ class TransactionDaemon:
             with self.lock:
                 # print(message)
                 self.transaction = StreamTransaction(message)
-                print(self.transaction)
-                self.notify_observers(self.transaction)
+                # print(self.transaction)
+                information_to_send = (
+                    f'{self.transaction.price} '
+                    f'{self.transaction.quantity:.5f} '
+                    f'{self.transaction.market_order_side}'
+                )
+
+                self.notify_observers(
+                    {'transaction': information_to_send}
+                )
 
         api_key, api_secret = os.environ.get('DEV_MODE_API_KEY'), os.environ.get('DEV_MODE_API_SECRET')
 

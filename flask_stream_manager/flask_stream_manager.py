@@ -6,9 +6,12 @@ import logging
 from threading import Thread, Event
 from queue import Queue
 
+from abstract_base_classes.observer import Observer
 
-class FlaskManager:
+
+class FlaskManager(Observer):
     def __init__(self):
+        super().__init__()
         self.observers = []
         self.app = Flask(__name__)
         CORS(self.app)
@@ -18,19 +21,8 @@ class FlaskManager:
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
 
-    def subscribe(self, observer):
-        self.observers.append(observer)
-
-    def unsubscribe(self, observer):
-        self.observers.remove(observer)
-
-    def notify_observers(self, data):
-        for observer in self.observers:
-            observer.update(data)
-
-    def update(self, variable, message):
-        data = {variable: message}
-        self.data_queue.put(data)
+    def update(self, message):
+        self.data_queue.put(message)
         self.data_updated.set()
 
     def setup_routes(self):
@@ -41,8 +33,7 @@ class FlaskManager:
         @self.app.route('/post', methods=['POST'])
         def receive_data():
             data = request.get_json()
-            print('received sth')
-            print(data)
+            print(f'>> {list(data.items())[0][1]}')
             self.notify_observers(data)
             return "Data received"
 
