@@ -63,10 +63,3 @@ Strategies
         ACTI PROD       COIN-M  BTCETHP +25%    +14  EUR    0.12    1:10    5D-3H-12M   B0.0001@11-11T23:21:37     20 EUR   
         ACTI BACKTEST   COIN-M  BTCXRP  -10%    -12  EUR    0.20    1:10    5D-3H-12M   S0.00001@11-11T23:21:37    20 EUR
                                     '''
-
-
-
-
-
-
-

@@ -4,9 +4,6 @@ from abstract_base_classes.observer import Observer
 import argparse
 
 
-
-
-
 class Calculator(Observer):
     def __init__(self):
         super().__init__()
@@ -30,7 +27,6 @@ class Calculator(Observer):
         return parser
 
     def update(self, data):
-
         if (list(data.items())[0][0] == 'cli_request'
                 and list(data.items())[0][1].split()[0] == self.main_invocation_command):
             self.execute_command(list(data.items())[0][1])

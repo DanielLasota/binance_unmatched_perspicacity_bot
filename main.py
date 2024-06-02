@@ -46,7 +46,7 @@ transaction_daemon = TransactionDaemon()
 transaction_daemon.run('BTCUSDT')
 transaction_daemon.register(flask_manager)
 
-flask_manager.update({'dashboardEstimatedTotalBalance': 1888})
+flask_manager.update({'dashboardEstimatedTotalBalance': 2115})
 flask_manager.update({'dashboardBTCUSDPriceMain': 2137})
 
 logger = FlaskConsoleLogger()

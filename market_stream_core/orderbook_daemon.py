@@ -19,7 +19,9 @@ class OrderbookDaemon(Observer):
             with self.lock:
                 self.orderbook_message = message
                 self.formatted_target_orderbook = StreamOrderbook(message)
+
                 # print(self.formatted_target_orderbook)
+                
                 self.notify_observers({'orderbookBestBidsQueue': self.formatted_target_orderbook.best_n_bids_repr(17)})
                 self.notify_observers({'orderbookBestAsksQueue': self.formatted_target_orderbook.best_n_asks_repr(17)})
 

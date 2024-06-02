@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7031a3d-21d5-4755-8023-ae2c47052ad9" name="Changes" comment="help commands print grooming">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/calculator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli_daemon/cli_daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/cli_daemon/cli_daemon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credentials_daemon/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/credentials_daemon/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_stream_manager/flask_stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_stream_manager/flask_stream_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market_stream_core/orderbook_daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_stream_core/orderbook_daemon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/ascii_arts.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/ascii_arts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

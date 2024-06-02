@@ -32,12 +32,19 @@ class Login:
         session_key = session_key.strip()
         
         try:
-            process = subprocess.Popen(['bw', 'get', 'item', secret_id, '--session', session_key], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            wynik, error = process.communicate()
+            process = subprocess.Popen(
+                ['bw', 'get', 'item', secret_id, '--session', session_key],
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+
+            result, error = process.communicate()
             if error:
                 print(f"Error: failed to get specified secret. Check Secret ID")
                 return None
-            secret = json.loads(wynik)
+            secret = json.loads(result)
             
         except subprocess.CalledProcessError as e:
             print(f"Error")
